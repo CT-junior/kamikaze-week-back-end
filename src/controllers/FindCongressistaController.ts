@@ -1,0 +1,7 @@
+class FindCongressistaController {
+
+    
+}
+
+
+export { FindCongressistaController };

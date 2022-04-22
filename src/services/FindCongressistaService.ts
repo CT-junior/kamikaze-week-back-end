@@ -1,0 +1,7 @@
+
+class FindCongressistaService {
+    
+}
+
+
+export { FindCongressistaService };
