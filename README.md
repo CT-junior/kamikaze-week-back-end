@@ -13,18 +13,22 @@ Sistema de inscrições nas palestras
                 imageUrl:
                 id: firstName.lastName
             }
+            
     response : 201 created 
         {
             id
         }
     
     [X] - Criar congressistas
-    [X] - Não permite email repretido
+    [X] - Não permite email repetido
     [X] - Não permite campo vazio (exceto img)
 
  * GET - '/congressista/${id}'
     
     response : user
+
+    [X] - retorna user
+    [X] - Não retorna user que não existe
 
  * POST - '/palestra'
   
@@ -32,4 +36,9 @@ Sistema de inscrições nas palestras
             congressista: x
             palestra: y
         }
+    
+    [X] - fazer inscrição
+    [X] - verificar se o usuário existe
+    [X] - verificar se a palestra existe
+    [X] - verificar se o usuário já está na palestra
 

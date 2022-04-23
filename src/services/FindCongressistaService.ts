@@ -25,7 +25,6 @@ class FindCongressistaService {
             throw new Error("query failed");
         }
         
-        
     }
 }
 
