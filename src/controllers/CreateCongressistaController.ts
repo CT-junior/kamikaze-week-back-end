@@ -3,19 +3,25 @@ import { CreateCongressistaService } from "../services/CreateCongressistaService
 
 class CreateCongressistaController{
 
-    handle(req: Request, res: Response): Response{
-        const {firstName, lastName, imgUrl, email} = req.body;
+    async handle(req: Request, res: Response) {
+        const {clientid, nome, curso, periodo, telefone, email, imagemUrl} = req.body;
 
+        if(!periodo){
+            throw new Error("periodo is undefined");
+        }
         const congressistaRequest = {
-            firstName,
-            lastName,
-            imgUrl,
-            email
+            clientid,
+            nome,
+            curso,
+            periodo,
+            telefone,
+            email,
+            imagemUrl
         }
 
         const createCongressistaService = new CreateCongressistaService();
 
-        const congressista = createCongressistaService.execute(congressistaRequest);
+        const congressista = await createCongressistaService.execute(congressistaRequest);
         return res.status(201).json(congressista);
     }
 }

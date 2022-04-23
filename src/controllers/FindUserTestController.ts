@@ -1,10 +1,11 @@
+import { Request, Response } from "express";
 import { pool } from "../database";
 
-class FindCongressistaService {
-    async execute(clienteId: string){
+class FindUserTestController{
+    async handle(req: Request, res: Response) {
         const text = "SELECT * FROM congressistas WHERE id like $1;";
         const values = [
-            clienteId
+            'alex1234'
         ]
         
         try {
@@ -13,21 +14,15 @@ class FindCongressistaService {
             const congressista = result.rows[0];
 
             if(!congressista){
-                throw new Error("id");
-            }
-
-            return congressista;
-            
-        } catch (err) {
-            if(err.message === "id"){
                 throw new Error("congressista id doesn't exists");
             }
+            
+            return res.status(200).json(congressista);
+
+        } catch (err) {
             throw new Error("query failed");
         }
-        
-        
     }
 }
 
-
-export { FindCongressistaService };
+export { FindUserTestController };

@@ -2,35 +2,49 @@ import { pool } from "../database";
 import { Congressista } from "../entities/Congressista";
 
 interface ICongressista{
-    firstName: string;
-    lastName: string;
-    email: string;
-    imgUrl: string;
+    clientid: string,
+    nome: string,
+    curso: string,
+    periodo: string,
+    telefone: string,
+    email: string,
+    imagemUrl: string
 };
 
 class CreateCongressistaService{
 
     constructor(){}
 
-    async execute({firstName, lastName, email, imgUrl}: ICongressista): Promise<Congressista>{
-        const congressista = new Congressista(firstName, lastName, email, imgUrl);
+    async execute({clientid, nome, curso, periodo, telefone, email, imagemUrl}: ICongressista): Promise<Congressista>{
+        const congressista = new Congressista(clientid, nome, curso, periodo, telefone, email, imagemUrl);
+
+        const text1 = "SELECT * FROM congressistas WHERE email like $1";
+        const values1 = [
+            email
+        ]
+        
+        const emailAlreadyExists = await pool.query(text1, values1);
+
+        if(emailAlreadyExists.rowCount !== 0){
+            throw new Error("email already exists");
+        }
         
         const id =congressista.id;
-        const text = "INSERT INTO congressistas (id, firstName, lastName, email, imgUrl) VALUES ($1, $2, $3, $4, $5) RETURNING *;";
+        const text = "INSERT INTO congressistas (id, nome, curso, periodo, telefone, email, imgurl) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;";
 
         const values = [
-            congressista.id,
-            firstName,
-            lastName,
+            clientid,
+            nome,
+            curso,
+            periodo,
+            telefone,
             email,
-            imgUrl
+            imagemUrl
         ];
 
         try{
             const result = await pool.query(text, values);
-            console.log(result.rows[0]);
         } catch (err){
-            console.log(err.stack);
             throw new Error("query failed!");
         }
 

@@ -17,6 +17,10 @@ Sistema de inscrições nas palestras
         {
             id
         }
+    
+    [X] - Criar congressistas
+    [X] - Não permite email repretido
+    [X] - Não permite campo vazio (exceto img)
 
  * GET - '/congressista/${id}'
     

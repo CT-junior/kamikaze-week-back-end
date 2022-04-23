@@ -1,15 +1,17 @@
 import Router from "express";
-import { pool } from "../database";
 import { congressistaRouter } from "./congressista.routes";
-import { createdatabase } from "./createdatabase.routes";
+import { findCongressistaRouter } from "./findCongressista.routes";
+import { findUserRouter } from "./findUserTest.routes";
 import { hello } from "./teste.routes";
 
 const router = Router();
 
 router.use(congressistaRouter);
 
+router.use(findCongressistaRouter);
+
 router.use(hello);
 
-router.use(createdatabase);
+router.use(findUserRouter);
 
 export { router };

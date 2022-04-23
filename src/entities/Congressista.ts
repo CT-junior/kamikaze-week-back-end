@@ -1,8 +1,14 @@
 class Congressista{
     id: string;
-    constructor(private firstName: string, private lastName: string, private imgUrl: string, private email: string){
-        this.id = firstName + "." + lastName;
-    }
+    constructor(
+        private clientid,
+        private nome,
+        private curso,
+        private periodo,
+        private telefone,
+        private email,
+        private imagemUrl)
+        {}
 }
 
 export { Congressista };
