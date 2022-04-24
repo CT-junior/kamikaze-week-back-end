@@ -22,7 +22,7 @@ class ListCongressistasByPalestraService{
         }
 
 
-        const text = "SELECT * FROM relations WHERE id_palestra like $1"
+        const text = "SELECT id_congressista FROM relations WHERE id_palestra like $1"
         const values = [
             palestraId
         ]
@@ -30,7 +30,7 @@ class ListCongressistasByPalestraService{
         try {
             const res = await pool.query(text, values);
 
-            return res.rows[0];
+            return res.rows;
         } catch (err) {
             console.log(err.stack);
             throw new Error("query failed - get realations");
