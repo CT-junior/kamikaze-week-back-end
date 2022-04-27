@@ -4,13 +4,13 @@ import { CreateCongressistaService } from "../services/CreateCongressistaService
 class CreateCongressistaController{
 
     async handle(req: Request, res: Response) {
-        const {clientid, nome, curso, periodo, telefone, email, imagemUrl} = req.body;
+        const {clientId, nome, curso, periodo, telefone, email, imagemUrl} = req.body;
 
         if(!periodo){
             throw new Error("periodo is undefined");
         }
         const congressistaRequest = {
-            clientid,
+            clientId,
             nome,
             curso,
             periodo,

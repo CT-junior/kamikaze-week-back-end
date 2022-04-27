@@ -2,7 +2,7 @@ import { pool } from "../database";
 import { Congressista } from "../entities/Congressista";
 
 interface ICongressista{
-    clientid: string,
+    clientId: string,
     nome: string,
     curso: string,
     periodo: string,
@@ -15,8 +15,8 @@ class CreateCongressistaService{
 
     constructor(){}
 
-    async execute({clientid, nome, curso, periodo, telefone, email, imagemUrl}: ICongressista): Promise<Congressista>{
-        const congressista = new Congressista(clientid, nome, curso, periodo, telefone, email, imagemUrl);
+    async execute({clientId, nome, curso, periodo, telefone, email, imagemUrl}: ICongressista): Promise<Congressista>{
+        const congressista = new Congressista(clientId, nome, curso, periodo, telefone, email, imagemUrl);
 
         const text1 = "SELECT * FROM congressistas WHERE email like $1";
         const values1 = [
@@ -33,7 +33,7 @@ class CreateCongressistaService{
         const text = "INSERT INTO congressistas (id, nome, curso, periodo, telefone, email, imgurl) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;";
 
         const values = [
-            clientid,
+            clientId,
             nome,
             curso,
             periodo,
