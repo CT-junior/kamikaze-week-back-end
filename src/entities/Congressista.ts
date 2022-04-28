@@ -1,7 +1,7 @@
 class Congressista{
     id: string;
     constructor(
-        private clientid,
+        private clientId,
         private nome,
         private curso,
         private periodo,

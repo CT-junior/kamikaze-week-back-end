@@ -28,8 +28,19 @@ class CreateCongressistaService{
         if(emailAlreadyExists.rowCount !== 0){
             throw new Error("email already exists");
         }
+
+        const text2 = "SELECT * FROM congressistas WHERE id like $1";
+        const values2 = [
+            clientId
+        ]
         
-        const id =congressista.id;
+        const congressistaAlreadyExists = await pool.query(text2, values2);
+
+        if(congressistaAlreadyExists.rowCount !== 0){
+            throw new Error("clientId already exists");
+        }
+        
+        const id = congressista.id;
         const text = "INSERT INTO congressistas (id, nome, curso, periodo, telefone, email, imgurl) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;";
 
         const values = [
@@ -45,10 +56,10 @@ class CreateCongressistaService{
         try{
             const result = await pool.query(text, values);
         } catch (err){
-            throw new Error("query failed!");
+            throw new Error("query failed! - creating congressista");
         }
 
-        return congressista;
+        return;
     }
 }
 

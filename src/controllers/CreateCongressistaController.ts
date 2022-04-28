@@ -22,7 +22,7 @@ class CreateCongressistaController{
         const createCongressistaService = new CreateCongressistaService();
 
         const congressista = await createCongressistaService.execute(congressistaRequest);
-        return res.status(201).json(congressista);
+        return res.status(201).send();
     }
 }
 
